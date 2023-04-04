@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@hgraph.io/sdk": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^18.15.11"
+  }
+}
