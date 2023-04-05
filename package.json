@@ -1,9 +1,14 @@
 {
   "dependencies": {
-    "@hgraph.io/sdk": "0.0.1",
+    "@hgraph.io/sdk": "0.0.2",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11"
+    "@types/node": "^18.15.11",
+    "esbuild": "^0.17.15"
+  },
+  "scripts": {
+    "watch": "sh -c \"mkdir -p dist && serve dist & nodemon -w src -e ts,js,tsx,jsx,json,gql,graphql,css,html --exec 'npm run build'& wait\"",
+    "build": "node ./build.mjs"
   }
 }
