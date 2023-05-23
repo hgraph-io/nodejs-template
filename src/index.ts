@@ -1,5 +1,6 @@
-import hg from '@hgraph.io/sdk'
+import Client, {createJws, verifyJws} from '@hgraph.io/sdk'
 import * as dotenv from 'dotenv'
+
 dotenv.config()
 
 const subscription = `
@@ -9,28 +10,38 @@ subscription LatestTransaction {
   }
 }`
 
-async function main() {
-  const unsubscribe = await hg(subscription, {
-    // The client supports filtering the response date using jmespath -  https://jmespath.org/
-    filter: 'data.transaction[0].consensus_timestamp',
-    // handle the data
-    next: (data: bigint) => {
-      const diff = (BigInt(new Date().getTime()) - data / 1000000n) / 1000n
-      console.log(`consensus_timestamp was about ${diff} seconds ago`)
-    },
-    error: (e: string) => {
-      console.error(e)
-    },
-    complete: () => {
-      console.log('Optionally do some cleanup')
-    },
-    headers: {
-      'x-api-key': process.env.HGRAPH_API_KEY,
-    },
-  })
+const client = new Client()
 
-  // clear subscription
-  setTimeout(unsubscribe, 6000)
+async function main() {
+  // create a JWS token
+  const jws = await createJws(
+    process.env.HEDERA_ACCOUNT_PRIVATE_KEY,
+    process.env.HEDERA_ACCOUNT_PUBLIC_KEY,
+    {
+      claims: {'urn:example:claim': true},
+      audience: 'https://hgraph.me',
+      expirationTime: '1h',
+      issuer: process.env.HEDERA_ACCOUNT_ID,
+    }
+  )
+
+  console.log(await verifyJws(jws, process.env.HEDERA_ACCOUNT_PUBLIC_KEY))
+
+//   const unsubscribe = client.subscribe(subscription, {
+//     // handle the data
+//     next: (data) => {
+//       console.dir(data, {depth: null})
+//     },
+//     error: (e) => {
+//       console.error(e)
+//     },
+//     complete: () => {
+//       console.log('Optionally do some cleanup')
+//     },
+//   })
+
+//   // clear subscription
+//   setTimeout(unsubscribe, 6000)
 }
 
 main()
