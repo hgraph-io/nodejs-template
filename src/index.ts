@@ -1,8 +1,14 @@
-import hg from '@hgraph.io/sdk'
+import Client from '@hgraph.io/sdk'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-const subscription = `
+const client = new Client()
+
+client.headers = {
+  'x-api-key': process.env.HGRAPH_API_KEY,
+}
+
+const LatestTransactionSubscription = `
 subscription LatestTransaction {
   transaction(limit: 1, order_by: {consensus_timestamp: desc}) {
     consensus_timestamp
@@ -10,27 +16,23 @@ subscription LatestTransaction {
 }`
 
 async function main() {
-  const unsubscribe = await hg(subscription, {
-    // The client supports filtering the response date using jmespath -  https://jmespath.org/
-    filter: 'data.transaction[0].consensus_timestamp',
+  const subscription = client.subscribe(LatestTransactionSubscription,  {
     // handle the data
-    next: (data: bigint) => {
-      const diff = (BigInt(new Date().getTime()) - data / 1000000n) / 1000n
+    next: ({data}: any) => {
+      const { consensus_timestamp } = data.transaction[0]
+      const diff = (BigInt(new Date().getTime()) - consensus_timestamp / 1000000n) / 1000n
       console.log(`consensus_timestamp was about ${diff} seconds ago`)
     },
-    error: (e: string) => {
+    error: (e) => {
       console.error(e)
     },
     complete: () => {
       console.log('Optionally do some cleanup')
     },
-    headers: {
-      'x-api-key': process.env.HGRAPH_API_KEY,
-    },
   })
 
   // clear subscription
-  setTimeout(unsubscribe, 6000)
+  setTimeout(subscription.unsubscribe, 6000)
 }
 
 main()
