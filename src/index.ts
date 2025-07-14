@@ -17,11 +17,15 @@ subscription LatestTransaction {
 }`
 
 async function main() {
-  const subscription = client.subscribe(LatestTransactionSubscription,  {
+  const subscription = client.subscribe(LatestTransactionSubscription, {
     // handle the data
-    next: ({data}: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    next: ({ data }: any) => {
       const { consensus_timestamp } = data.transaction[0]
-      const diff = secondsSinceConsensus(consensus_timestamp, BigInt(new Date().getTime()))
+      const diff = secondsSinceConsensus(
+        consensus_timestamp,
+        BigInt(new Date().getTime()),
+      )
       console.log(`consensus_timestamp was about ${diff} seconds ago`)
     },
     error: (e) => {
