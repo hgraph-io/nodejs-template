@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 const provider = new JsonRpcProvider(
-  `https://mainnet.hedera.api.hgraph.dev/v1/${process.env.HGRAPH_API_KEY}/rpc`,
+  `https://${process.env.HGRAPH_NETWORK}.hedera.api.hgraph.dev/v1/${process.env.HGRAPH_API_KEY}/rpc`,
 )
 
 const ERC20_ADDRESS = '0x49bce6adea59ce638ef15808dbc63503845c0c85'
