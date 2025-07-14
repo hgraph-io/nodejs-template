@@ -40,4 +40,8 @@ async function main() {
   setTimeout(subscription.unsubscribe, 6000)
 }
 
-main()
+export { main }
+
+if (process.env.NODE_ENV !== 'test') {
+  main()
+}
