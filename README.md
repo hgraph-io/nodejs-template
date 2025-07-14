@@ -54,3 +54,7 @@ const subscription = client.subscribe(LatestTransactionSubscription, {
 ```
 If you encounter connection errors ensure the API key is valid and that your
 network allows outbound connections to HGraph.
+
+
+## Detecting contract type
+`src/contractType.ts` shows how to determine if a contract address implements the ERC-20 or ERC-721 interface using ethers. The exported `detectContractType` function returns `"erc20"`, `"erc721"`, or `"unknown"`.
