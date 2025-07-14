@@ -19,11 +19,16 @@ export async function showTokenInfo(): Promise<void> {
     name: await erc20.name(),
     symbol: await erc20.symbol(),
     decimals: await erc20.decimals(),
+    balanceOfZero: await erc20.balanceOf(
+      '0x0000000000000000000000000000000000000000',
+    ),
   }
 
   const erc721Info = {
     name: await erc721.name(),
     symbol: await erc721.symbol(),
+    ownerOf1: await erc721.ownerOf(1n),
+    tokenURI1: await erc721.tokenURI(1n),
   }
 
   console.log('ERC20 Token:', erc20Info)
