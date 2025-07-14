@@ -29,19 +29,6 @@ When successful you should see output similar to:
 consensus_timestamp was about <seconds> seconds ago
 ```
 
-## Watch mode
-The project includes a convenience watcher that rebuilds on change and serves
-`dist` using `serve` while watching files with `nodemon`:
-```bash
-npm run watch
-```
-During watch mode `serve` prints the local URL (default is
-`http://localhost:3000`) and `nodemon` logs rebuild messages whenever source
-files are updated.
-
-If the command fails with `serve: command not found` install it globally or run
-`npx serve`.
-
 ## Environment variables
 - `HGRAPH_API_KEY` – your API key used by the GraphQL client. This value is
   loaded from `.env` at runtime.

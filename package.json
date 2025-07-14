@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@hgraph.io/sdk": "^0.8.4",
+    "@hgraph.io/sdk": "^0.8.5",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
@@ -17,9 +17,9 @@
     "ts-jest": "^29.1.1"
   },
   "scripts": {
-    "watch": "sh -c \"mkdir -p dist && serve dist & nodemon -w src -e ts,js,tsx,jsx,json,gql,graphql,css,html --exec 'npm run build'& wait\"",
     "build": "node ./build.mjs",
     "start": "npm run build && node dist/index.js",
+    "start:token": "npm run build && node dist/tokenInfo.js",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts"
   }
