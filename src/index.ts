@@ -1,5 +1,6 @@
 import Client from '@hgraph.io/sdk'
 import * as dotenv from 'dotenv'
+import { secondsSinceConsensus } from './utils'
 dotenv.config()
 
 const client = new Client()
@@ -20,7 +21,7 @@ async function main() {
     // handle the data
     next: ({data}: any) => {
       const { consensus_timestamp } = data.transaction[0]
-      const diff = (BigInt(new Date().getTime()) - consensus_timestamp / 1000000n) / 1000n
+      const diff = secondsSinceConsensus(consensus_timestamp, BigInt(new Date().getTime()))
       console.log(`consensus_timestamp was about ${diff} seconds ago`)
     },
     error: (e) => {
