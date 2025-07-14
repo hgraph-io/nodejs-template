@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@hgraph.io/sdk": "^0.8.5",
+    "@hgraph.io/sdk": "^0.8.6",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "build": "node ./build.mjs",
     "start": "npm run build && node dist/index.js",
     "start:token": "npm run build && node dist/tokenInfo.js",
+    "start:wrappers": "npm run build && node dist/ercWrappersDemo.js",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts"
   }

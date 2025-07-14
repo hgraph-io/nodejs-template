@@ -55,6 +55,14 @@ const subscription = client.subscribe(LatestTransactionSubscription, {
 If you encounter connection errors ensure the API key is valid and that your
 network allows outbound connections to HGraph.
 
+<<<<<<< ours
 
 ## Detecting contract type
 `src/contractType.ts` shows how to determine if a contract address implements the ERC-20 or ERC-721 interface using ethers. The exported `detectContractType` function returns `"erc20"`, `"erc721"`, or `"unknown"`.
+
+## ERC wrapper examples
+Run the following command to build the project and execute a script demonstrating every function in the ERC20 and ERC721 wrappers:
+```bash
+npm run start:wrappers
+```
+The script `src/ercWrappersDemo.ts` shows how to read token information and invoke transfer functions using an ethers `Wallet`.

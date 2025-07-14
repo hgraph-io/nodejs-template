@@ -1,7 +1,12 @@
 import esbuild from 'esbuild'
 
 esbuild.build({
-  entryPoints: ['src/index.ts', 'src/tokenInfo.ts', 'src/contractType.ts'],
+  entryPoints: [
+    'src/index.ts',
+    'src/tokenInfo.ts',
+    'src/contractType.ts',
+    'src/ercWrappersDemo.ts',
+  ],
   bundle: true,
   // minify: true,
   platform: 'node',
