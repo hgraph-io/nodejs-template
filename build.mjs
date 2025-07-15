@@ -6,6 +6,7 @@ esbuild.build({
     'src/tokenInfo.ts',
     'src/contractType.ts',
     'src/ercWrappersDemo.ts',
+    'src/cli.ts',
   ],
   bundle: true,
   // minify: true,
