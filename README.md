@@ -57,6 +57,14 @@ network allows outbound connections to HGraph.
 
 ## Detecting contract type
 `src/contractType.ts` shows how to determine if a contract address implements the ERC-20 or ERC-721 interface using ethers. The exported `detectContractType` function returns `"erc20"`, `"erc721"`, or `"unknown"`.
+The file also contains `showContractTypeDemo` which downloads token lists from the
+[Hiero Mirror Node Explorer](https://github.com/hiero-ledger/hiero-mirror-node-explorer/tree/3be93c1b1172610a539f2d9379c849113d987a85/public/mainnet)
+repository and prints the detected type of a couple of sample addresses.
+
+Run the demo with:
+```bash
+npm run demo:contractType
+```
 
 ## ERC wrapper examples
 Run the following command to build the project and execute a script demonstrating every function in the ERC20 and ERC721 wrappers:
