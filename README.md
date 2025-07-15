@@ -64,11 +64,3 @@ Run the following command to build the project and execute a script demonstratin
 npm run start:wrappers
 ```
 The script `src/ercWrappersDemo.ts` shows how to read token information and invoke transfer functions using an ethers `Wallet`.
-
-## CLI demo runner
-After building the project you can run a simple CLI that lists the available
-examples and lets you choose which ones to execute:
-```bash
-npm run start:cli
-```
-For each demo you will be prompted with `y` or `n` to run it or skip it.

@@ -18,10 +18,10 @@
   },
   "scripts": {
     "build": "node ./build.mjs",
-    "start": "npm run build && node dist/index.js",
-    "start:token": "npm run build && node dist/tokenInfo.js",
-    "start:wrappers": "npm run build && node dist/ercWrappersDemo.js",
-    "start:cli": "npm run build && node dist/cli.js",
+    "demo": "npm run build && node dist/index.js",
+    "demo:token": "npm run build && node dist/tokenInfo.js",
+    "demo:wrappers": "npm run build && node dist/ercWrappersDemo.js",
+    "demo:contractType": "npm run build && node dist/contractType.js",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts"
   }

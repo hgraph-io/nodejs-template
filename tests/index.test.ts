@@ -61,13 +61,13 @@ describe('main', () => {
     expect(unsubscribeMock).toHaveBeenCalled()
   })
 
-  it('runs automatically when NODE_ENV is not test', () => {
+  it('does not run automatically when imported', () => {
     process.env.NODE_ENV = 'production'
     jest.isolateModules(() => {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       require('../src/index')
     })
-    expect(subscribeMock).toHaveBeenCalled()
+    expect(subscribeMock).not.toHaveBeenCalled()
     process.env.NODE_ENV = 'test'
   })
 })

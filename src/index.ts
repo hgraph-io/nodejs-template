@@ -42,6 +42,6 @@ async function main() {
 
 export { main }
 
-if (process.env.NODE_ENV !== 'test') {
+if (require.main === module) {
   main()
 }
